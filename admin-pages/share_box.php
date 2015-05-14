@@ -18,16 +18,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 		
 		<hr/>
 		
-		<p>This is a preview of the Referify sharing box, that appears on your thank you page.</p>
-		
-		<?php add_iframe_content( 'preview' ) ;?>
-		
-		<br/>
-		
-		<p>To edit the share box settings, please click the button below which will take you to your Referify account</p>
+		<?php if( ! $REFERIFY_RETAILER_ID ) { ?>	
 
-		<a href="http://referify.co.uk/retailer/iframe" target="_blank"><div class="button button-primary">Manage Share Box</div></a>
+			<p>Please add your Referify ID and Server API Secret to see the preview</p>
+
+		<?php } else { ?>
 		
+			<p>This is a preview of the Referify sharing box, that appears on your thank you page.</p>
+			
+			<?php add_iframe_content( 'preview' ) ;?>
+			
+			<br/>
+			
+			<p>To edit the share box settings, please click the button below which will take you to your Referify account</p>
+
+			<a href="http://referify.co.uk/retailer/iframe" target="_blank"><div class="button button-primary">Manage Share Box</div></a>
 		
+		<?php } ?>
 
 	</div>
