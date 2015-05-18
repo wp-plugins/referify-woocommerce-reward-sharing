@@ -1,7 +1,7 @@
 === Referify WooCommerce Reward Sharing ===
 Contributors: raiserweb
 Donate link: http://raiserweb.com
-Tags: referify, woocommerce, referral, 
+Tags: referify, woocommerce, referral, discount, ecommerce, incentive, increase sales, refer a friend, referrals, woocommerce add-ons, woocommerce addons, woocommerce extensions, woocommerce plugins
 Requires at least: 3.0.1
 Tested up to: 4.2
 Stable tag: 1.0.0
