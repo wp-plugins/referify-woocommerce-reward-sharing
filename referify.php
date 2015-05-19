@@ -3,7 +3,7 @@
  * Plugin Name: Referify WooCommerce Reward Social Sharing
  * Plugin URI: 
  * Description: Incentivise your customers to share your website by offering cashback
- * Version:  1.0
+ * Version:  1.1
  * Author: Referify
  * Author URI: http://www.referify.co.uk
  * Developer: RaiserWeb
@@ -187,5 +187,35 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			
 		}
 	}
+	
+	
+
+	// --------- WIDGET IN SIDEBAR -----------//
+	
+	add_action('widgets_init', 'register_referify_widget');
+	function register_referify_widget() {
+		register_widget('referify_sidebar_widget');
+	}
+
+	class referify_sidebar_widget extends WP_Widget {
+		
+		function referify_sidebar_widget()	{
+			$widget_ops = array('classname' => 'cc', 'description' => 'Widget for positioning the Referify Share box in the sidebar or footer');
+			$control_ops = array('id_base' => 'referify_sidebar_widget');
+			$this->WP_Widget('referify_sidebar_widget', 'Referify', $widget_ops, $control_ops);
+		}
+		
+		function widget($args, $instance) {	
+				
+			echo $before_widget;
+			add_iframe_content();
+			echo $after_widget;
+			
+		}	
+	}
+
+
+	//. --------- WIDGET IN SIDEBAR -----------//	
+	
 	
 }
