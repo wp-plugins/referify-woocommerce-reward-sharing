@@ -31,10 +31,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			
 			<div style="clear:both;"></div>
-			
+
 			<br/>
 			
-			<strong>You can also place this share box within any of your site sidebars, using the Referify widget found in Appearance > Widgets</strong>
+			<h3>Share Box Placement</h3>
+			
+			<p>You can also use this shortcode to place the share box on any page of your site</p>
+			
+			<p><input type="text" readonly value="[referify-share-box]"></p>
+			
+			<strong>Alternatively you can also place this share box within any of your site sidebars, using the Referify widget found in Appearance > Widgets</strong>
+			
+			<br/>
 			
 			<br/>
 			

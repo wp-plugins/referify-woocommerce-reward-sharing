@@ -3,7 +3,7 @@
  * Plugin Name: Referify WooCommerce Reward Social Sharing
  * Plugin URI: 
  * Description: Incentivise your customers to share your website by offering cashback
- * Version:  1.1
+ * Version:  1.2
  * Author: Referify
  * Author URI: http://www.referify.co.uk
  * Developer: RaiserWeb
@@ -39,7 +39,6 @@ include( 'functions.php' );
 include( 'required_plugin/required-plugins.php' );
 
 
-
 if( is_admin() ) {
 	
 
@@ -72,18 +71,30 @@ if( is_admin() ) {
 }
 
 
+// add shortcode
+add_shortcode('referify-share-box', 'referify_share_box_short_code');
+function referify_share_box_short_code(){
+	
+	add_iframe_content();
+	
+}
+
+
+
 // test if woo commerce is active
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	
+
 
 	// add text to the thank you page 
 	add_action( 'woocommerce_thankyou', 'add_iframe_content', 1 ); 
-	function add_iframe_content( $preview = '' ) {
+	function add_iframe_content( $order_id = '' ) {
 
 		$REFERIFY_RETAILER_ID = get_option( "referify_retailer_id", false );
 		$REFERIFY_SHARE_BOX = get_option( "referify_share_box", false );	
 		$REFERIFY_SERVER_SECRET = get_option( "referify_server_secret", false );
 		
-		if( $preview == 'preview' ) {
+		if( $order_id == 'preview' ) {
 
 			if( $REFERIFY_RETAILER_ID ) {
 				
@@ -110,6 +121,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			if( $REFERIFY_RETAILER_ID && $REFERIFY_SHARE_BOX != 'off' ) {
 				
 				//$iframe = '<iframe src="http://referify.co.uk/iframe/'.$REFERIFY_RETAILER_ID.'" width="320" height="400" frameBorder="0" ></iframe>';
+				
+				// if on the thank you page
+				if( $order_id == '' ){					
+					$billing_email = '';
+				} else {
+					$order = new WC_Order( $order_id );
+					$billing_email = $order->billing_email;
+				}
+				
 				$iframe = '
 				<div id="referify_iframe"></div>
 				<script type="text/javascript">
@@ -118,7 +138,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 					a.width="320";
 					a.height="400";
 					a.frameBorder="0";
-					a.src = ("https:" == document.location.protocol ? "https://" : "http://") + "referify.co.uk/iframe/'.$REFERIFY_RETAILER_ID.'";
+					a.src = ("https:" == document.location.protocol ? "https://" : "http://") + "referify.co.uk/iframe/'.$REFERIFY_RETAILER_ID.'?email='.$billing_email.'";
 					document.getElementById("referify_iframe").appendChild(a);
 				})();
 				</script>				
