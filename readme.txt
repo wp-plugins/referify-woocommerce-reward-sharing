@@ -4,7 +4,7 @@ Donate link: http://raiserweb.com
 Tags: referify, woocommerce, referral, discount, ecommerce, incentive, increase sales, refer a friend, referrals, woocommerce add-ons, woocommerce addons, woocommerce extensions, woocommerce plugins
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,8 @@ This Referify plugin adds a share box to your thank your page (see screenshots),
 Consumers trust their friends - using Referify enables you to encourage social sharing, which can increase your brand exposure, and ultimately your sales. Signing Up to Referify is completely FREE, and you only pay commission when successful transactions are made.
 
 The commission cost is 10% for the consumers, and 3% for Referify of the total transaction value, and ONLY when successful transactions are made.
+
+You can also set up an offer for the person being referred to you, by setting up a discount code for your checkout.
 
 This plugin is an add-on to WooCommerce, and will not work without WooCommerce installed.
 
@@ -77,6 +79,9 @@ If you have any more questions, you can get in touch with Referify here <a href=
 
 = 1.2 =
 * Added share box shortcode
+
+= 1.3 =
+* Added javascript for referred box offer
 
 == Upgrade Notice ==
 

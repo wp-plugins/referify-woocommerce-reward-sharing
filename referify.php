@@ -3,7 +3,7 @@
  * Plugin Name: Referify WooCommerce Reward Social Sharing
  * Plugin URI: 
  * Description: Incentivise your customers to share your website by offering cashback
- * Version:  1.2
+ * Version:  1.3
  * Author: Referify
  * Author URI: http://www.referify.co.uk
  * Developer: RaiserWeb
@@ -84,7 +84,30 @@ function referify_share_box_short_code(){
 // test if woo commerce is active
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	
-
+	// add referred box script to every page
+	add_action('wp_footer', 'add_referred_box_script');	
+	function add_referred_box_script(){
+		$REFERIFY_RETAILER_ID = get_option( "referify_retailer_id", false );
+		if( $REFERIFY_RETAILER_ID ) { ?>
+		<script type="text/javascript">
+			function getParameterByName_rfer1(name) {
+				name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+				var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+				return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+			if( getParameterByName_rfer1("rfer") == "true" ) {
+			(function() {		
+				var a = document.createElement("script");
+				a.type= "text/javascript";
+				a.src = ("https:" == document.location.protocol ? "https://" : "http://") + "track.referify.co.uk/referred_box/<?php echo $REFERIFY_RETAILER_ID;?>.js";
+				a.async = true;		
+				document.getElementsByTagName("body")[0].appendChild(a);
+			})();
+			}			
+		</script>
+		<?php }
+	} 
 
 	// add text to the thank you page 
 	add_action( 'woocommerce_thankyou', 'add_iframe_content', 1 ); 
